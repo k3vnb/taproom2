@@ -5,19 +5,19 @@ import { Keg } from './keg.model';
   template: `
   <div>
     <div *ngIf="childSelectedKeg">
-      <form id="keg-form">
+
         <label name="brand">Brewery Name</label>
         <input [(ngModel)]="childSelectedKeg.brand" name="brand" type="text" id="brewery-name">
         <label name="title">Beer Name</label>
         <input [(ngModel)]="childSelectedKeg.title" name="title" type="text" id="beer-name">
         <label name="price">Price</label>
         <input [(ngModel)]="childSelectedKeg.price" name="price" type="text" id="pint-price">
-        <label name="ABV">% ABV</label>
-        <input [(ngModel)]="ABV" name="ABV" type="text" id="abv">
+        <label name="abv">ABV%</label>
+        <input [(ngModel)]="childSelectedKeg.abv" name="abv" type="text" id="abv-field">
         <label name="amount">Pints remaining</label>
         <input [(ngModel)]="childSelectedKeg.amount" name="amount" type="text" val="124" id="pints">
-        <button (click)="finishedEditing()">Done</button>
-      </form>
+        <button (click)="doneButtonClicked()">Done</button>
+
     </div>
   </div>
   `
@@ -25,4 +25,9 @@ import { Keg } from './keg.model';
 
 export class EditKegComponent {
   @Input() childSelectedKeg: Keg;
+  @Output() doneButtonClickedSender = new EventEmitter();
+
+  doneButtonClicked() {
+    this.doneButtonClickedSender.emit();
+  }
 }

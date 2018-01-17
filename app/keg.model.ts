@@ -8,7 +8,7 @@ export class Keg {
     public brand: string,
     public title: string,
     public price: number,
-    public ABV: number,
+    public abv: number,
     public amount: number,
   ){ }
 }
