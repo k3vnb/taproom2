@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Keg } from './keg.model';
 
 @Component({
   selector: 'app-root',
@@ -6,20 +7,18 @@ import { Component } from '@angular/core';
   <div class="container">
     <h1>{{barName}}</h1>
     <h3>Beer Menu</h3>
-    <ul>
-      <li *ngFor="let currentKeg of Kegs">{{currentKeg.brand}}<ul><li>{{currentKeg.title}}</li><li>$ {{currentKeg.price}}</li><li>{{currentKeg.ABV}}%</li><li (click)="isSold(currentKeg)">{{currentKeg.amount}}</li></ul><button (click)="editBeer()">Edit!</button></li>
-    </ul>
+    <keg-list [childKegList]="masterKegList" (clickSender)="editKeg($event)"></keg-list>
     <form id="key-form">
       <label name="brand">Brewery Name</label>
-      <input [(ngModel)]="brand" type="text" id="brewery-name">
+      <input [(ngModel)]="brand" name="brand" type="text" id="brewery-name">
       <label name="title">Beer Name</label>
-      <input [(ngModel)]="title" type="text" id="beer-name">
+      <input [(ngModel)]="title" name="title" type="text" id="beer-name">
       <label name="price">Price</label>
-      <input [(ngModel)]="price" type="text" id="pint-price">
+      <input [(ngModel)]="price" name="price" type="text" id="pint-price">
       <label name="ABV">% ABV</label>
-      <input [(ngModel)]="ABV" type="text" id="abv">
+      <input [(ngModel)]="ABV" name="ABV" type="text" id="abv">
       <label name="amount">Pints remaining</label>
-      <input [(ngModel)]="amount" type="text" val="124" id="pints">
+      <input [(ngModel)]="amount" name="amount" type="text" val="124" id="pints">
       <button type="submit">Submit</button>
     </form>
   </div>
@@ -28,14 +27,13 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   barName: string = 'The Angular Taproom';
-  Kegs: Keg[] = [
+  masterKegList: Keg[] = [
     new Keg('Barley Brown', 'Pallet Jack', 6.00, 6.5, 102),
     new Keg('Gigantic Brewing', 'Catch 23', 6.75, 5.8, 95),
     new Keg('Baerlic', 'New Noise', 5.75, 6.4, 162),
+  ]
 
-  ];
-
-  editBeer() {
+  editKeg() {
     console.log('edit beer');
   }
 
@@ -44,15 +42,4 @@ export class AppComponent {
     console.log(this.Kegs[i].amount);
     }
   }
-}
-
-export class Keg {
-  public done: boolean = false;
-  constructor(
-    public brand: string,
-    public title: string,
-    public price: number,
-    public ABV: number,
-    public amount: number,
-  ){ }
 }
