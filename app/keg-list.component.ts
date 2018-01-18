@@ -14,7 +14,7 @@ import { Keg } from './keg.model';
       <li (click)="isDone(currentKeg)" *ngFor="let currentKeg of childKegList | kickedness:filterByKickedness">{{currentKeg.brand}}
           <input *ngIf="currentKeg.done === true" type="checkbox" checked (click)="toggleDone(currentKeg, false)"/>
           <input *ngIf="currentKeg.done === false" type="checkbox" (click)="toggleDone(currentKeg, true)"/><ul>
-        <li>{{currentKeg.title}}</li><li>$ {{currentKeg.price}}</li><li>{{currentKeg.abv}}%</li><li (click)="isSold(currentKeg)">{{currentKeg.amount}}</li></ul>
+        <li>{{currentKeg.title}}</li><li>{{currentKeg.price | currency: 'USD': 'symbol'}}</li><li>{{currentKeg.abv | percent}}</li><li (click)="isSold(currentKeg)">{{currentKeg.amount}}</li></ul>
         <button class="edit-btn" (click)="editButtonHasBeenClicked(currentKeg)">Edit!</button></li>
     </ul>
   `

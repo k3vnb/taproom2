@@ -18,9 +18,9 @@ import { EditKegComponent } from './edit-keg.component';
 export class AppComponent {
   barName: string = 'The Angular Taproom';
   masterKegList: Keg[] = [
-    new Keg('Barley Brown', 'Pallet Jack', 6.00, 6.50, 102),
-    new Keg('Gigantic Brewing', 'Catch 23', 6.75, 5.85, 95),
-    new Keg('Baerlic', 'New Noise', 5.75, 6.4, 162),
+    new Keg('Barley Brown', 'Pallet Jack', 6.00, .065, 102),
+    new Keg('Gigantic Brewing', 'Catch 23', 6.75, .0585, 95),
+    new Keg('Baerlic', 'New Noise', 5.75, .064, 162),
   ];
   selectedKeg = null;
 
