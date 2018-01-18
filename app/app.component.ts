@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Keg } from './keg.model';
+import { EditKegComponent } from './edit-keg.component';
 
 @Component({
   selector: 'app-root',
@@ -20,18 +21,21 @@ export class AppComponent {
     new Keg('Barley Brown', 'Pallet Jack', 6.00, 6.50, 102),
     new Keg('Gigantic Brewing', 'Catch 23', 6.75, 5.85, 95),
     new Keg('Baerlic', 'New Noise', 5.75, 6.4, 162),
-  ]
+  ];
+  selectedKeg = null;
+
+
 
   editKeg(clickedKeg) {
     console.log('edit beer');
     this.selectedKeg = clickedKeg;
   }
 
-  isSold(clickedKeg: currentKeg) {
-    for (var i = 0; i < this.Kegs.length; i++) {
-    console.log(this.Kegs[i].amount);
-    }
-  }
+  // isSold(clickedKeg: currentKeg) {
+  //   for (var i = 0; i < this.Kegs.length; i++) {
+  //   console.log(this.Kegs[i].amount);
+  //   }
+  // }
 
   finishedEditing() {
     this.selectedKeg = null;

@@ -6,15 +6,15 @@ import { Keg } from './keg.model';
   template: `
     <h1>New Keg</h1>
     <label name="brand">Brewery Name</label>
-    <input #newBrand><br>
+    <input #newBrand name="brand"><br>
     <label name="title">Beer Name</label>
-    <input #newTitle><br>
+    <input #newTitle name="title"><br>
     <label name="price">Price</label>
-    <input #newPrice><br>
+    <input #newPrice name="price"><br>
     <label name="abv">ABV%</label>
-    <input #newAbv><br>
+    <input #newAbv name="abv"><br>
     <label name="amount">Pints remaining</label>
-    <input #newAmount><br>
+    <input #newAmount name="amount"><br>
     <button (click)="submitForm(newBrand.value, newTitle.value, newPrice.value, newAbv.value, newAmount.value); newBrand.value=''; newTitle.value=''; newPrice.value=''; newAbv.value=''; newAmount.value='';">Add</button>
   `
 })
