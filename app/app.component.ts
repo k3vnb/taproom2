@@ -19,7 +19,7 @@ export class AppComponent {
   barName: string = 'The Angular Taproom';
   masterKegList: Keg[] = [
     new Keg('Barley Brown', 'Pallet Jack', 6.00, .065, 102),
-    new Keg('Gigantic Brewing', 'Catch 23', 6.75, .0585, 95),
+    new Keg('Gigantic Brewing', 'Catch 23', 6.75, .0585, 5),
     new Keg('Baerlic', 'New Noise', 5.75, .064, 162),
   ];
   selectedKeg = null;
@@ -27,7 +27,6 @@ export class AppComponent {
 
 
   editKeg(clickedKeg) {
-    console.log('edit beer');
     this.selectedKeg = clickedKeg;
   }
 
@@ -35,6 +34,9 @@ export class AppComponent {
   //   for (var i = 0; i < this.Kegs.length; i++) {
   //   console.log(this.Kegs[i].amount);
   //   }
+  // }
+  // soldKeg(clickedKeg){
+  //   console.log("Blammo!");
   // }
 
   finishedEditing() {

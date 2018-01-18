@@ -27,6 +27,18 @@ export class KegListComponent {
   @Output() clickSender = new EventEmitter();
   filterByKickedness: string = "incompleteKegs";
 
+  isSold(clickedKeg: Keg) {
+      clickedKeg.amount = clickedKeg.amount - 1;
+      if (clickedKeg.amount < 1) {
+        console.log("uh oh");
+        clickedKeg.done = true;
+      }
+  }
+
+  isDone(clickedKeg) {
+    // console.log("hello");
+  }
+
   onChange(optionFromMenu) {
     this.filterByKickedness = optionFromMenu;
   }
