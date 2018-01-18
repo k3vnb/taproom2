@@ -1,3 +1,15 @@
 h1 {
   color: red;
 }
+
+.edit-btn {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  font-size: 70%;
+  display: flex;
+  justify-content: center;
+  background-color: lightblue;
+  box-shadow: 1px 1px 3px black;
+
+}
