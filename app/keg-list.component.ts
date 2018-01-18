@@ -9,6 +9,10 @@ import { Keg } from './keg.model';
       <option value="completedKegs">Kicked Kegs</option>
       <option value="incompleteKegs" selected="selected">not Kicked Kegs</option>
     </select>
+    <select (change)="onChange($event.target.value)">
+      <option value="sortByPrice">Sort kegs by Price</option>
+      <option value="sortByABV">Sort kegs by ABV</option>
+    </select>
 
     <ul>
       <li (click)="isDone(currentKeg)" *ngFor="let currentKeg of childKegList | kickedness:filterByKickedness">{{currentKeg.brand}}
