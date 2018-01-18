@@ -31,7 +31,7 @@ export class AppComponent {
     this.selectedKeg = clickedKeg;
   }
 
-  // isSold(clickedKeg: currentKeg) {
+  // isDone(clickedKeg: currentKeg) {
   //   for (var i = 0; i < this.Kegs.length; i++) {
   //   console.log(this.Kegs[i].amount);
   //   }

@@ -4,15 +4,32 @@ import { Keg } from './keg.model';
 @Component({
   selector: 'keg-list',
   template: `
-  <ul>
-    <li *ngFor="let currentKeg of childKegList">{{currentKeg.brand}}<ul><li>{{currentKeg.title}}</li><li>$ {{currentKeg.price}}</li><li>{{currentKeg.abv}}%</li><li (click)="isSold(currentKeg)">{{currentKeg.amount}}</li></ul><button class="edit-btn" (click)="editButtonHasBeenClicked(currentKeg)">Edit!</button></li>
-  </ul>
+    <select (change)="onChange($event.target.value)">
+      <option value="allKegs">All Kegs</option>
+      <option value="completedKegs">Kicked Kegs</option>
+      <option value="incompleteKegs" selected="selected">not Kicked Kegs</option>
+    </select>
+
+    <ul>
+      <li (click)="isDone(currentKeg)" *ngFor="let currentKeg of childKegList | kickedness">{{currentKeg.brand}}
+          <input *ngIf="currentKeg.done === true" type="checkbox" checked (click)="toggleDone(currentKeg, false)"/>
+          <input *ngIf="currentKeg.done === false" type="checkbox" (click)="toggleDone(currentKeg, true)"/><ul>
+        <li>{{currentKeg.title}}</li><li>$ {{currentKeg.price}}</li><li>{{currentKeg.abv}}%</li><li (click)="isSold(currentKeg)">{{currentKeg.amount}}</li></ul>
+        <button class="edit-btn" (click)="editButtonHasBeenClicked(currentKeg)">Edit!</button></li>
+    </ul>
   `
 })
+
+
 
 export class KegListComponent {
   @Input() childKegList: Keg[];
   @Output() clickSender = new EventEmitter();
+  filterByKickedness: string = "incompleteKegs";
+
+  onChange(optionFromMenu) {
+    this.filterByKickedness = optionFromMenu;
+  }
 
   editButtonHasBeenClicked(kegToEdit: Keg) {
     this.clickSender.emit(kegToEdit);
