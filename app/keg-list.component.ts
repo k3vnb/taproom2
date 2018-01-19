@@ -9,13 +9,10 @@ import { Keg } from './keg.model';
       <option value="completedKegs">Kicked Kegs</option>
       <option value="incompleteKegs" selected="selected">not Kicked Kegs</option>
     </select>
-    <select (change)="onChange($event.target.value)">
-      <option value="sortByPrice">Sort kegs by Price</option>
-      <option value="sortByABV">Sort kegs by ABV</option>
-    </select>
+
 
     <ul>
-      <li (click)="isDone(currentKeg)" *ngFor="let currentKeg of childKegList | kickedness:filterByKickedness">{{currentKeg.brand}}
+      <li (click)="isDone(currentKeg)" *ngFor="let currentKeg of childKegList | kickedness:filterByKickedness | sort:filterBySort">{{currentKeg.brand}}
           <input *ngIf="currentKeg.done === true" type="checkbox" checked (click)="toggleDone(currentKeg, false)"/>
           <input *ngIf="currentKeg.done === false" type="checkbox" (click)="toggleDone(currentKeg, true)"/><ul>
         <li>{{currentKeg.title}}</li><li>{{currentKeg.price | currency: 'USD': 'symbol'}}</li><li>{{currentKeg.abv | percent}}</li><li (click)="isSold(currentKeg)">{{currentKeg.amount}}</li></ul>
@@ -30,6 +27,7 @@ export class KegListComponent {
   @Input() childKegList: Keg[];
   @Output() clickSender = new EventEmitter();
   filterByKickedness: string = "incompleteKegs";
+  filterBySort: string = "sortByABV";
 
   isSold(clickedKeg: Keg) {
       clickedKeg.amount = clickedKeg.amount - 1;
@@ -45,6 +43,7 @@ export class KegListComponent {
 
   onChange(optionFromMenu) {
     this.filterByKickedness = optionFromMenu;
+    this.filterBySort = optionFromMenu;
   }
 
   editButtonHasBeenClicked(kegToEdit: Keg) {
